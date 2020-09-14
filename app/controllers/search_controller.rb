@@ -1,18 +1,9 @@
 class SearchController < ApplicationController
 
   def index
-    @poems = Author.author(params[:author]).first(10)
-
-    searches = []
-    @poems.each do |poem|
-      searches << poem.lines.join(" ")
-    end
-
-    searches.each do |search|
-      @emotions = Emotion.emotion(search)
-    end
-    
-    @emotions
-    require"pry"; binding.pry
+    # The controller is responsible for being the go-between
+    # It asks for info & gives the return to the view
+    search = SearchFacade.new(params[:author])
+    @poems = search.poems
   end
 end
