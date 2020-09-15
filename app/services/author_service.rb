@@ -1,3 +1,4 @@
+# Rename to PoetryService for clarity
 class AuthorService
   def author(name)
     poems = conn.get("/author/#{name}")
